@@ -15,7 +15,7 @@ if (cars) {
     return cars.map(car => {
       return (
         <p key={car.regPlate}>
-          Reg Plate: {car.regPlate} - Make: {car.make} - Model: {car.model}
+          Reg Plate: {car.regPlate} - Make1: {car.make} - Model: {car.model}
         </p>
       );
     });
