@@ -1,25 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
 
+import React, { useEffect, useState } from "react";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+  const [cars, setCars] = useState([]);
+useEffect(() => {
+    (async () => {
+      const response = await fetch("/api/get-some-cars");
+      const json = await response.json();
+      setCars(json);
+    })();
+  }, []);
+if (cars) {
+    return cars.map(car => {
+      return (
+        <p key={car.regPlate}>
+          Reg Plate: {car.regPlate} - Make: {car.make} - Model: {car.model}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      );
+    });
+  }
+return <div className="App"></div>;
 }
-
 export default App;
